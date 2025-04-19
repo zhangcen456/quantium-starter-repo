@@ -8,9 +8,10 @@ df=pd.read_csv("./data/processed.csv")
 df['sales']=df['sales'].str.replace("$","",regex=False)
 df['sales']=pd.to_numeric(df['sales'])
 df['date']=pd.to_datetime(df['date'])
+df=df.sort_values(by="date")
 
 app.layout=[
-    html.H1("Sales for pink morsels"),
+    html.H1("Sales for pink morsels",id="title"),
     dcc.RadioItems(
         options=["north", "east", "south", "west", "all"],
         value="north",
